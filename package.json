@@ -1,5 +1,5 @@
 {
-  "name": "goit-react-hw-07-phonebook",
+  "name": "goit-react-hw-08-phonebook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,7 +29,7 @@
     "deploy": "gh-pages -d build",
     "serv": "json-server --watch 'server/db.json' --port 3001"
   },
-  "homepage": "https://dimamarjan.github.io/goit-react-hw-07-phonebook",
+  "homepage": "https://dimamarjan.github.io/goit-react-hw-08-phonebook",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -50,8 +50,8 @@
   },
   "devDependencies": {
     "eslint": "^7.32.0",
-    "husky": "^6.0.0",
-    "lint-staged": "^11.1.1",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
     "redux-devtools-extension": "^2.13.9"
   },
