@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const NavBarContainer = styled.nav`
   display: flex;
@@ -10,15 +10,18 @@ export const NavBarContainer = styled.nav`
   border-bottom: 2px solid black;
 `;
 
-export const NavBarLink = styled(Link)`
+export const NavBarLink = styled(NavLink)`
   text-decoration: none;
   &:not(:last-child) {
     margin-right: 50px;
   }
+  &.active {
+    color: red;
+  }
 `;
 
 export const LinkContainer = styled.div`
-  &.home-link {
+  &.home-links {
     margin-left: 200px;
   }
   &.user-links {

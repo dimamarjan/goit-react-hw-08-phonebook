@@ -9,6 +9,8 @@ export const FormPhoneBook = styled.form`
   margin-left: 5px;
 `;
 
+export const FormHeader = styled.h1``;
+
 export const LabelForm = styled.label`
   display: flex;
   flex-direction: column;

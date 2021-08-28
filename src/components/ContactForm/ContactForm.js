@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   FormPhoneBook,
+  FormHeader,
   LabelForm,
   LabelText,
   InputForm,
@@ -51,6 +52,7 @@ export function ContactForm() {
 
   return (
     <div>
+      <FormHeader>Phonebook</FormHeader>
       <FormPhoneBook onSubmit={onSubmitHandle}>
         <LabelForm>
           <LabelText>Name</LabelText>

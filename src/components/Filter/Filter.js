@@ -1,4 +1,5 @@
 import {
+  ListHeader,
   LabelContacts,
   LabelContactsText,
   InputContacts,
@@ -16,6 +17,7 @@ export function Filter() {
 
   return (
     <div>
+      <ListHeader>Contacts</ListHeader>
       <LabelContacts>
         <LabelContactsText>
           Find contacts by <AccentText>name</AccentText> or{" "}

@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 
+export const ListHeader = styled.h2``;
+
 export const LabelContacts = styled.label`
   display: flex;
   flex-direction: column;
