@@ -5,7 +5,7 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   loggedStatus: "idle",
-  cuurrentUserStatus: "rejected",
+  cuurrentUserStatus: null,
 };
 
 const authSlice = createSlice({
@@ -47,7 +47,7 @@ const authSlice = createSlice({
       state.user = { name: null, email: null };
       state.token = null;
       state.loggedStatus = "idle";
-      state.cuurrentUserStatus = "rejected";
+      state.cuurrentUserStatus = "loggedOut";
     },
 
     [authOperations.getCurrentUser.fulfilled]: (state, action) => {

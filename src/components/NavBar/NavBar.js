@@ -29,6 +29,10 @@ export function NavBar() {
         setIsPrivat(false);
         setIsPublic(true);
         break;
+      case "loggedOut":
+        setIsPrivat(false);
+        setIsPublic(true);
+        break;
       default:
         break;
     }

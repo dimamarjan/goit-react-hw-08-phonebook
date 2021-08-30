@@ -9,6 +9,8 @@ export default function PublicRoute({
   ...routeProps
 }) {
   const isloggedStatus = useSelector(authSelectors.loggedStatus);
+  console.log("isloggedStatus", isloggedStatus)
+  console.log(isloggedStatus === "idle" && restricted)
   const shouldRedirect = isloggedStatus === "loaded" && restricted;
   return (
     <Route {...routeProps}>

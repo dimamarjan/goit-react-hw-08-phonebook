@@ -24,16 +24,16 @@ function App() {
     <>
       <NavBar />
       <Switch>
-        <PrivateRoute path="/contacts">
+        <PrivateRoute path="/contacts" redirectTo="/login" >
           <ContactForm />
           <ContactList />
         </PrivateRoute>
 
-        <PublicRoute exact path="/login" restricted>
+        <PublicRoute exact path="/login" redirectTo="/contacts" restricted>
           <LoginForm />
         </PublicRoute>
 
-        <PublicRoute exact path="/registration" restricted>
+        <PublicRoute exact path="/registration" redirectTo="/contacts" restricted>
           <RegistrationForm />
         </PublicRoute>
       </Switch>

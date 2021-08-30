@@ -56,20 +56,28 @@ export function ContactList() {
   }, [contactsList, filter]);
 
   useEffect(() => {
-    if (filter) {
-      setIsShowContacts(false);
-      setShowFilteredList(true);
-    } else {
-      setShowFilteredList(false);
+    if (isLoadedContacts === "fulfilled") {
       setIsShowContacts(true);
     }
-  }, [filter]);
+  }, [contactsList, isLoadedContacts]);
 
   useEffect(() => {
     if (isLoadedContacts === "changed") {
       dispatch(contactsOperations.getContacts());
     }
   }, [dispatch, isLoadedContacts]);
+
+  useEffect(() => {
+    if (filter) {
+      setIsShowContacts(false);
+      setShowFilteredList(true);
+    } else {
+      setShowFilteredList(false);
+      if (isLoadedContacts === "fulfilled") {
+        setIsShowContacts(true);
+      }
+    }
+  }, [filter, isLoadedContacts]);
 
   return (
     <div>
