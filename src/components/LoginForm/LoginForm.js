@@ -37,7 +37,8 @@ export function LoginForm() {
         password: passwordInput,
       })
     );
-    eve.target.reset();
+    setEmailInput("");
+    setPasswordInput("");
   };
 
   return (
@@ -46,6 +47,7 @@ export function LoginForm() {
         <LoginFormLabel>
           <LoginLableText>Login</LoginLableText>
           <LoginFormInput
+            value={emailInput}
             className="login-input"
             name="login"
             type="mail"
@@ -57,6 +59,7 @@ export function LoginForm() {
         <LoginFormLabel>
           <LoginLableText>Password</LoginLableText>
           <LoginFormInput
+            value={passwordInput}
             className="paswd-input"
             name="paswd"
             type="password"

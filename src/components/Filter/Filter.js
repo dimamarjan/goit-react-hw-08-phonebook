@@ -20,7 +20,8 @@ export function Filter() {
       <ListHeader>Contacts</ListHeader>
       <LabelContacts>
         <LabelContactsText>
-          Find contacts by <AccentText>name</AccentText> or{" "}
+          Find contacts by
+          <AccentText>name</AccentText>
           <AccentText>number</AccentText>
         </LabelContactsText>
         <InputContacts name="filter" onChange={onChangeHandle} />

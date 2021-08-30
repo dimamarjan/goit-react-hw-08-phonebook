@@ -42,7 +42,9 @@ export function RegistrationForm() {
         password: passwordInput,
       })
     );
-    eve.target.reset();
+    setNameInput("");
+    setEmailInput("");
+    setPasswordInput("");
   };
 
   return (
@@ -51,6 +53,7 @@ export function RegistrationForm() {
         <ReginFormLabel>
           <ReginLableText>Name</ReginLableText>
           <ReginFormInput
+            value={nameInput}
             className="name-input"
             name="name"
             type="name"
@@ -62,10 +65,13 @@ export function RegistrationForm() {
         <ReginFormLabel>
           <ReginLableText>Login</ReginLableText>
           <ReginFormInput
+            value={emailInput}
             className="login-input"
             name="login"
             type="email"
             onChange={onChangengeHeandler}
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            required
           />
         </ReginFormLabel>
       </ReginFormSection>
@@ -73,6 +79,7 @@ export function RegistrationForm() {
         <ReginFormLabel>
           <ReginLableText>Password</ReginLableText>
           <ReginFormInput
+            value={passwordInput}
             className="paswd-input"
             name="paswd"
             type="password"

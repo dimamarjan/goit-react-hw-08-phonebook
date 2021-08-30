@@ -7,23 +7,25 @@ export const NavBarContainer = styled.nav`
   position: static;
   width: 100%;
   height: 60px;
-  border-bottom: 2px solid black;
 `;
 
 export const NavBarLink = styled(NavLink)`
   text-decoration: none;
-  margin-right: 200px;
+  margin-right: 50px;
   &.active {
     color: red;
   }
 `;
 
 export const LinkContainer = styled.div`
-  &.home-links {
-    margin-left: 200px;
-  }
-  &.user-links {
-    margin-right: 200px;
-    margin-left: auto;
-  }
+  display: flex;
+  align-items: center;
+  margin-right: 200px;
+  margin-left: auto;
 `;
+
+export const UserName = styled.p`
+  margin-right: 15px;
+`;
+
+export const LogOutButton = styled.button``;

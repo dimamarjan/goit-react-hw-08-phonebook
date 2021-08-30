@@ -4,8 +4,8 @@ import authOperations from "redux/slices/auth/auth-operations";
 const initialState = {
   user: { name: null, email: null },
   token: null,
-  loggedStatus: false,
-  isFetchingCurrentUser: false,
+  loggedStatus: "idle",
+  cuurrentUserStatus: "rejected",
 };
 
 const authSlice = createSlice({
@@ -15,41 +15,51 @@ const authSlice = createSlice({
     [authOperations.register.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.loggedStatus = true;
+      state.loggedStatus = "loaded";
+      state.cuurrentUserStatus = "loaded";
+    },
+    [authOperations.register.pending]: (state, _) => {
+      state.loggedStatus = "pending";
     },
     [authOperations.register.rejected]: (state, _) => {
       state.user = { name: null, email: null };
       state.token = null;
-      state.loggedStatus = false;
+      state.loggedStatus = "rejected";
+      state.cuurrentUserStatus = "rejected";
     },
 
     [authOperations.logIn.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.loggedStatus = true;
+      state.loggedStatus = "loaded";
+      state.cuurrentUserStatus = "loaded";
+    },
+    [authOperations.logIn.pending]: (state, _) => {
+      state.loggedStatus = "pending";
     },
     [authOperations.logIn.rejected]: (state, _) => {
       state.user = { name: null, email: null };
       state.token = null;
-      state.loggedStatus = false;
+      state.loggedStatus = "rejected";
     },
 
     [authOperations.logOut.fulfilled]: (state, _) => {
       state.user = { name: null, email: null };
       state.token = null;
-      state.loggedStatus = false;
+      state.loggedStatus = "idle";
+      state.cuurrentUserStatus = "rejected";
     },
 
-    [authOperations.fetchCurrentUser.pending]: (state, _) => {
-      state.isFetchingCurrentUser = true;
-    },
-    [authOperations.fetchCurrentUser.fulfilled]: (state, action) => {
+    [authOperations.getCurrentUser.fulfilled]: (state, action) => {
       state.user = action.payload;
-      state.loggedStatus = true;
-      state.isFetchingCurrentUser = false;
+      state.loggedStatus = "loaded";
+      state.cuurrentUserStatus = "loaded";
     },
-    [authOperations.fetchCurrentUser.rejected]: (state, _) => {
-      state.isFetchingCurrentUser = false;
+    [authOperations.getCurrentUser.pending]: (state, _) => {
+      state.cuurrentUserStatus = "pending";
+    },
+    [authOperations.getCurrentUser.rejected]: (state, _) => {
+      state.cuurrentUserStatus = "rejected";
     },
   },
 });

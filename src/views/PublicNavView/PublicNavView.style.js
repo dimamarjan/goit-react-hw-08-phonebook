@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { NavLink } from "react-router-dom";
 
 export const NavBarContainer = styled.nav`
@@ -7,12 +8,13 @@ export const NavBarContainer = styled.nav`
   position: static;
   width: 100%;
   height: 60px;
-  border-bottom: 2px solid black;
 `;
 
 export const NavBarLink = styled(NavLink)`
   text-decoration: none;
-  margin-right: 200px;
+  &:not(:last-child) {
+    margin-right: 50px;
+  }
   &.active {
     color: red;
   }

@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import {
   FormPhoneBook,
   FormHeader,
@@ -7,56 +9,46 @@ import {
   InputForm,
   SubmitButton,
 } from "components/ContactForm/ContactForm.style";
-import { useDispatch, useSelector } from "react-redux";
-import { addContactData } from "redux/slices/contacts";
+
+import contactsOperations from "redux/slices/contacts/contacts-operations";
 
 export function ContactForm() {
+  const [nameInpt, setNameInpt] = useState("");
+  const [numberInpt, setNumberInpt] = useState("");
   const dispatch = useDispatch();
-  const contactsArr = useSelector((store) => store.contacts.items);
-  const [newContactsArr, setNewContactsArr] = useState();
 
-  const contactForm = (nameContact, numberContact, { target }) => {
-    const contactItem = {
-      name: nameContact.toLowerCase(),
-      number: numberContact,
-    };
-    target.reset();
-    return contactItem;
-  };
-
-  const onSubmitHandle = (e) => {
-    e.preventDefault();
-    const name = e.target.elements.name.value;
-    const number = e.target.elements.number.value;
-    if (contactsArr.length !== 0) {
-      const namesArr = contactsArr.map((i) => i.name);
-      const numberArr = contactsArr.map((i) => i.number);
-      if (namesArr.includes(name.toLowerCase()) || numberArr.includes(number)) {
-        e.target.reset();
+  const onChangeHendle = ({ target }) => {
+    switch (target.name) {
+      case "name":
+        return setNameInpt(target.value);
+      case "number":
+        return setNumberInpt(target.value);
+      default:
         return;
-      } else {
-        const newContact = contactForm(name, number, e);
-        setNewContactsArr(newContact);
-      }
-    } else {
-      const newContact = contactForm(name, number, e);
-      setNewContactsArr(newContact);
     }
   };
 
-  useEffect(() => {
-    if (newContactsArr) {
-      dispatch(addContactData(newContactsArr));
-    }
-  }, [dispatch, newContactsArr]);
+  const onSubmitHeandler = (eve) => {
+    eve.preventDefault();
+    dispatch(
+      contactsOperations.addContact({
+        name: nameInpt,
+        number: numberInpt,
+      })
+    );
+    setNameInpt("");
+    setNumberInpt("");
+  };
 
   return (
     <div>
       <FormHeader>Phonebook</FormHeader>
-      <FormPhoneBook onSubmit={onSubmitHandle}>
+      <FormPhoneBook onSubmit={onSubmitHeandler}>
         <LabelForm>
           <LabelText>Name</LabelText>
           <InputForm
+            onChange={onChangeHendle}
+            value={nameInpt}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -67,6 +59,8 @@ export function ContactForm() {
         <LabelForm>
           <LabelText>Number</LabelText>
           <InputForm
+            onChange={onChangeHendle}
+            value={numberInpt}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

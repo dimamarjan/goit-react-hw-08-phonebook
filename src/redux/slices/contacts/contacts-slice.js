@@ -1,56 +1,49 @@
 import { createSlice } from "@reduxjs/toolkit";
-import contactsOperations from "redux/slices/contacts/contacts-poperations";
+import contactsOperations from "redux/slices/contacts/contacts-operations";
 
 const initialState = {
   contacts: { name: null, number: null },
-  status: null,
+  status: "idle",
   err: null,
-  // token: null,
-  // isLoggedIn: false,
-  // isFetchingCurrentUser: false,
 };
 
 const contactsSlice = createSlice({
-  name: "auth",
+  name: "contacts",
   initialState,
   extraReducers: {
     [contactsOperations.getContacts.fulfilled]: (state, action) => {
-      state.items = action.payload;
-      state.status = null;
+      state.contacts = action.payload;
+      state.status = "fulfilled";
       state.err = null;
     },
-    [contactsOperations.getContacts.pending]: (state, _) => {
+    [contactsOperations.getContacts.pending]: (state) => {
       state.status = "pending";
     },
-    [contactsOperations.getContacts.rejected]: (state, _) => {
+    [contactsOperations.getContacts.rejected]: (state) => {
       state.status = null;
       state.err = "ERROR";
     },
 
-    [contactsOperations.addContact.fulfilled]: (state, action) => {
-      state.items = [...state.items, action.payload];
-      state.status = null;
+    [contactsOperations.addContact.fulfilled]: (state) => {
+      state.status = "changed";
       state.err = null;
     },
-    [contactsOperations.addContact.pending]: (state, _) => {
+    [contactsOperations.addContact.pending]: (state) => {
       state.status = "pending";
     },
-    [contactsOperations.addContact.rejected]: (state, _) => {
+    [contactsOperations.addContact.rejected]: (state) => {
       state.status = null;
       state.err = "ERROR";
     },
 
-    [contactsOperations.delContact.fulfilled]: (state, action) => {
-      state.items = state.items.filter(
-        (contact) => contact.id !== action.payload
-      );
-      state.status = null;
+    [contactsOperations.delContact.fulfilled]: (state) => {
+      state.status = "changed";
       state.err = null;
     },
-    [contactsOperations.delContact.pending]: (state, _) => {
+    [contactsOperations.delContact.pending]: (state) => {
       state.status = "pending";
     },
-    [contactsOperations.delContact.rejected]: (state, _) => {
+    [contactsOperations.delContact.rejected]: (state) => {
       state.status = null;
       state.err = "ERROR";
     },

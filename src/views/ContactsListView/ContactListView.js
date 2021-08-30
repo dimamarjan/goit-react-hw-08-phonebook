@@ -2,7 +2,7 @@ import {
   ContactListItem,
   ContactItemText,
   DelContactButton,
-} from "views/ContactListView.style";
+} from "views/ContactsListView/ContactListView.style";
 
 export function ContactListView({ data, onDelete }) {
   const { id, name, number } = data;

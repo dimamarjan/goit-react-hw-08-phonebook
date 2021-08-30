@@ -10,7 +10,7 @@ export default function PrivateRoute({
   const isloggedStatus = useSelector(authSelectors.loggedStatus);
   return (
     <Route {...routeProps}>
-      {isloggedStatus ? children : <Redirect to={redirectTo} />}
+      {isloggedStatus === "loaded" ? children : <Redirect to={redirectTo} />}
     </Route>
   );
 }

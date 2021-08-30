@@ -1,73 +1,90 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getContactsData, delContactData } from "redux/slices/contacts";
+
+import contactsSelectors from "redux/slices/contacts/contacts-selectors";
+import contactsOperations from "redux/slices/contacts/contacts-operations";
 
 import { ContactListSection } from "components/ContactList/ContactList.style";
-import { ContactListView } from "views/ContactListView";
+import { ContactListView } from "views/ContactsListView/ContactListView";
+
+import {
+  ListHeader,
+  LabelContacts,
+  LabelContactsText,
+  InputContacts,
+  AccentText,
+} from "components/Filter/Filter.style";
 
 export function ContactList() {
-  const store = useSelector((store) => store.contacts.items);
-  const filterData = useSelector((store) => store.filter);
-  const dispatch = useDispatch();
-  const [filteredArr, setFilteredArr] = useState([]);
-  const [dataToDelete, setDataToDelete] = useState();
+  const isLoadedContacts = useSelector(contactsSelectors.contactsLodedStatus);
+  const contactsList = useSelector(contactsSelectors.contactsData);
 
+  const [isShowContacts, setIsShowContacts] = useState(false);
   const [showFilteredList, setShowFilteredList] = useState(false);
-  const [showList, setShowList] = useState(false);
+  const [filter, setFilter] = useState("");
+  const [filteredArr, setFilteredArr] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const onFilterChange = ({ target }) => {
+    setFilter(target.value);
+  };
 
   const onDeleteHeandler = ({ target }) => {
-    dispatch(delContactData(target.id));
-    setDataToDelete(target.id);
+    dispatch(contactsOperations.delContact(target.id));
   };
 
   useEffect(() => {
-    dispatch(getContactsData());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (filterData) {
-      if (toString(filterData)) {
+    if (filter) {
+      if (toString(filter)) {
         setFilteredArr([
-          ...store.filter((contact) => {
-            return contact.name.indexOf(filterData.toLowerCase()) > -1;
+          ...contactsList.filter((contact) => {
+            return contact.name.indexOf(filter.toLowerCase()) > -1;
           }),
         ]);
       }
-      if (parseInt(filterData)) {
+      if (parseInt(filter)) {
         setFilteredArr([
-          ...store.filter((contact) => {
-            return contact.number.indexOf(filterData) > -1;
+          ...contactsList.filter((contact) => {
+            return contact.number.indexOf(filter) > -1;
           }),
         ]);
       }
     } else {
       setFilteredArr([]);
     }
-  }, [filterData, store]);
+  }, [contactsList, filter]);
 
   useEffect(() => {
-    if (dataToDelete) {
-      dispatch(getContactsData());
-      setDataToDelete("");
-    }
-  }, [dataToDelete, dispatch]);
-
-  useEffect(() => {
-    if (filteredArr.length !== 0) {
-      setShowList(false);
+    if (filter) {
+      setIsShowContacts(false);
       setShowFilteredList(true);
     } else {
       setShowFilteredList(false);
-      setShowList(true);
+      setIsShowContacts(true);
     }
-  }, [filteredArr.length]);
+  }, [filter]);
+
+  useEffect(() => {
+    if (isLoadedContacts === "changed") {
+      dispatch(contactsOperations.getContacts());
+    }
+  }, [dispatch, isLoadedContacts]);
 
   return (
     <div>
+      <ListHeader>Contacts</ListHeader>
+      <LabelContacts>
+        <LabelContactsText>
+          Find contacts by <AccentText>name</AccentText> or
+          <AccentText>number</AccentText>
+        </LabelContactsText>
+        <InputContacts name="filter" onChange={onFilterChange} value={filter} />
+      </LabelContacts>
+
       <ContactListSection>
-        {showList &&
-          store.map((contactItem) => (
+        {isShowContacts &&
+          contactsList.map((contactItem) => (
             <ContactListView
               key={contactItem.id}
               data={contactItem}
