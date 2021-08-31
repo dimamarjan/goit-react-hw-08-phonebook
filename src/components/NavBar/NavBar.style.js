@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 
 export const NavBarLink = styled(NavLink)`
   &.nav-links {

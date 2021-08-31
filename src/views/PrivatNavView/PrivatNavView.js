@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Typography from "@material-ui/core/Typography";
 
 import authOperations from "redux/slices/auth/auth-operations";
 import authSelectors from "redux/slices/auth/auth-selectors";
@@ -19,6 +18,8 @@ export function PrivatNavView() {
   const name = useSelector(authSelectors.getUsername);
   const userStatus = useSelector(authSelectors.isCurrentUser);
 
+  console.log(clearContacts);
+
   const onLogOutHeandler = () => {
     dispatch(authOperations.logOut());
   };
@@ -27,11 +28,11 @@ export function PrivatNavView() {
     dispatch(contactsOperations.getContacts());
   };
 
-  // useEffect(() => {
-  //   if (userStatus === "loggedOut") {
-  //     dispatch(clearContacts());
-  //   }
-  // }, [dispatch, userStatus]);
+  useEffect(() => {
+    if (userStatus === "loggedOut") {
+      dispatch(clearContacts());
+    }
+  }, [dispatch, userStatus]);
 
   useEffect(() => {
     dispatch(contactsOperations.getContacts());
