@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import {
-  NavBarContainer,
-  NavBarLink,
-  LinkContainer,
-} from "components/NavBar/NavBar.style";
+
+import { NavBarContainer, LinkContainer } from "components/NavBar/NavBar.style";
+
+import { NavBarView } from "views/NavBarView/NavBarView";
 import { PrivatNavView } from "views/PrivatNavView/PrivatNavView";
 import { PublicNavView } from "views/PublicNavView/PublicNavView";
+
 import authSelectors from "redux/slices/auth/auth-selectors";
 
 export function NavBar() {
@@ -15,7 +15,6 @@ export function NavBar() {
   const [isPublic, setIsPublic] = useState(false);
 
   useEffect(() => {
-    console.log("isloggedStatus = ", isloggedStatus);
     switch (isloggedStatus) {
       case "pending":
         setIsPrivat(false);
@@ -40,11 +39,7 @@ export function NavBar() {
 
   return (
     <NavBarContainer>
-      <LinkContainer className="home-links">
-        <NavBarLink to="/" exact>
-          Home
-        </NavBarLink>
-      </LinkContainer>
+      <NavBarView />
       <LinkContainer>
         {isPrivat && <PrivatNavView />}
         {isPublic && <PublicNavView />}

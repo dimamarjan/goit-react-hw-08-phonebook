@@ -13,7 +13,7 @@ import {
   LabelContactsText,
   InputContacts,
   AccentText,
-} from "components/Filter/Filter.style";
+} from "components/ContactList/ContactList.style";
 
 export function ContactList() {
   const isLoadedContacts = useSelector(contactsSelectors.contactsLodedStatus);

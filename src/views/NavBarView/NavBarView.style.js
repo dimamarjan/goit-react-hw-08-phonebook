@@ -1,15 +1,6 @@
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 
-export const NavBarContainer = styled.nav`
-  display: flex;
-  align-items: center;
-  position: static;
-  width: 100%;
-  height: 60px;
-  border-bottom: 2px solid black;
-`;
-
 export const NavBarLink = styled(NavLink)`
   text-decoration: none;
   margin-right: 200px;
@@ -19,8 +10,7 @@ export const NavBarLink = styled(NavLink)`
 `;
 
 export const LinkContainer = styled.div`
-  &.user-links {
-    margin-right: 200px;
-    margin-left: auto;
+  &.home-links {
+    margin-left: 200px;
   }
 `;
