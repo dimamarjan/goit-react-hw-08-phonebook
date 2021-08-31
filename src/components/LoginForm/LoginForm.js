@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "redux/slices/auth/auth-operations";
 
@@ -11,10 +11,14 @@ import {
   LoginFormSection,
 } from "components/LoginForm/LoginForm.style";
 
+import { BlackOut } from "utils/BlackOut";
+
 export function LoginForm() {
   const dispatch = useDispatch();
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const [isFadeOut, setIsFadeOut] = useState(true);
+  const [isLoadedPage, setIsLoadedPage] = useState(true);
 
   const onChangengeHeandler = ({ target }) => {
     switch (target.name) {
@@ -41,33 +45,50 @@ export function LoginForm() {
     setPasswordInput("");
   };
 
+  useEffect(() => {
+    if (isLoadedPage) {
+      setIsFadeOut(false);
+      setTimeout(() => {
+        setIsLoadedPage(false);
+      }, 1000);
+    }
+    return () => {};
+  }, [isLoadedPage]);
+
   return (
-    <LoginFormContainer onSubmit={onSubmitHeandler}>
-      <LoginFormSection>
-        <LoginFormLabel>
-          <LoginLableText>Login</LoginLableText>
-          <LoginFormInput
-            value={emailInput}
-            className="login-input"
-            name="login"
-            type="mail"
-            onChange={onChangengeHeandler}
-          />
-        </LoginFormLabel>
-      </LoginFormSection>
-      <LoginFormSection>
-        <LoginFormLabel>
-          <LoginLableText>Password</LoginLableText>
-          <LoginFormInput
-            value={passwordInput}
-            className="paswd-input"
-            name="paswd"
-            type="password"
-            onChange={onChangengeHeandler}
-          />
-        </LoginFormLabel>
-      </LoginFormSection>
-      <LoginSubmitButton>Confirm</LoginSubmitButton>
-    </LoginFormContainer>
+    <>
+      {isLoadedPage && (
+        <BlackOut
+          className={isFadeOut ? "black-enter" : "black-enter unactive"}
+        />
+      )}
+      <LoginFormContainer onSubmit={onSubmitHeandler}>
+        <LoginFormSection>
+          <LoginFormLabel>
+            <LoginLableText>Login</LoginLableText>
+            <LoginFormInput
+              value={emailInput}
+              className="login-input"
+              name="login"
+              type="mail"
+              onChange={onChangengeHeandler}
+            />
+          </LoginFormLabel>
+        </LoginFormSection>
+        <LoginFormSection>
+          <LoginFormLabel>
+            <LoginLableText>Password</LoginLableText>
+            <LoginFormInput
+              value={passwordInput}
+              className="paswd-input"
+              name="paswd"
+              type="password"
+              onChange={onChangengeHeandler}
+            />
+          </LoginFormLabel>
+        </LoginFormSection>
+        <LoginSubmitButton>Confirm</LoginSubmitButton>
+      </LoginFormContainer>
+    </>
   );
 }

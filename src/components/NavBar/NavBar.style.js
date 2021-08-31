@@ -1,26 +1,22 @@
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
-
-export const NavBarContainer = styled.nav`
-  display: flex;
-  align-items: center;
-  position: static;
-  width: 100%;
-  height: 60px;
-  border-bottom: 2px solid black;
-`;
+import { makeStyles } from "@material-ui/core/styles";
 
 export const NavBarLink = styled(NavLink)`
-  text-decoration: none;
-  margin-right: 200px;
+  &.nav-links {
+    color: white;
+    text-decoration: none;
+  }
   &.active {
     color: red;
   }
 `;
 
-export const LinkContainer = styled.div`
-  &.user-links {
-    margin-right: 200px;
-    margin-left: auto;
-  }
-`;
+export const navStyle = {
+  root: {
+    flexGrow: 1,
+  },
+  appBar: {
+    backgroundColor: "rgb(0, 0, 0)",
+  },
+};

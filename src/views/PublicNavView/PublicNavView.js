@@ -1,16 +1,10 @@
-import {
-  NavBarContainer,
-  NavBarLink,
-  LinkContainer,
-} from "views/PublicNavView/PublicNavView.style";
+import { NavBarLink } from "views/PublicNavView/PublicNavView.style";
 
 export function PublicNavView() {
   return (
-    <NavBarContainer>
-      <LinkContainer className="user-links">
-        <NavBarLink to="/login">Log in</NavBarLink>
-        <NavBarLink to="/registration">Sing up</NavBarLink>
-      </LinkContainer>
-    </NavBarContainer>
+    <>
+      <NavBarLink to="/login">LOGIN</NavBarLink>
+      <NavBarLink to="/registration">SING UP</NavBarLink>
+    </>
   );
 }

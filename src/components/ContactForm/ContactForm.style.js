@@ -5,7 +5,6 @@ export const FormPhoneBook = styled.form`
   width: 320px;
   border: 2px solid black;
   padding: 10px;
-
   margin-left: 5px;
 `;
 

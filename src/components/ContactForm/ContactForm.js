@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -10,12 +10,16 @@ import {
   SubmitButton,
 } from "components/ContactForm/ContactForm.style";
 
+import { BlackOut } from "utils/BlackOut";
+
 import contactsOperations from "redux/slices/contacts/contacts-operations";
 
 export function ContactForm() {
   const [nameInpt, setNameInpt] = useState("");
   const [numberInpt, setNumberInpt] = useState("");
   const dispatch = useDispatch();
+  const [isFadeOut, setIsFadeOut] = useState(true);
+  const [isLoadedPage, setIsLoadedPage] = useState(true);
 
   const onChangeHendle = ({ target }) => {
     switch (target.name) {
@@ -40,8 +44,23 @@ export function ContactForm() {
     setNumberInpt("");
   };
 
+  useEffect(() => {
+    if (isLoadedPage) {
+      setIsFadeOut(false);
+      setTimeout(() => {
+        setIsLoadedPage(false);
+      }, 1000);
+    }
+    return () => {};
+  }, [isLoadedPage]);
+
   return (
-    <div>
+    <>
+      {isLoadedPage && (
+        <BlackOut
+          className={isFadeOut ? "black-enter" : "black-enter unactive"}
+        />
+      )}
       <FormHeader>Phonebook</FormHeader>
       <FormPhoneBook onSubmit={onSubmitHeandler}>
         <LabelForm>
@@ -70,6 +89,6 @@ export function ContactForm() {
         </LabelForm>
         <SubmitButton>Add contact</SubmitButton>
       </FormPhoneBook>
-    </div>
+    </>
   );
 }
