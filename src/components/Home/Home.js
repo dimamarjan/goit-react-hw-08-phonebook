@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+
 import { HomeContainer } from "components/Home/Home.style";
 import Button from "@material-ui/core/Button";
+import { useButtonStyle } from "utils/styleHooks/buttonsHook";
+
 import { NavButton } from "components/Home/Home.style";
 import { BlackOut } from "utils/BlackOut";
 
@@ -9,6 +12,7 @@ export function Home() {
   const [isFadeIn, setIsFadeIn] = useState(false);
   const [isFadeOut, setIsFadeOut] = useState(true);
   const [isLoadedPage, setIsLoadedPage] = useState(true);
+  const { homeButtonStyle } = useButtonStyle();
   let history = useHistory();
 
   const goToTimeout = ({ target }) => {
@@ -51,12 +55,12 @@ export function Home() {
       >
         <HomeContainer className="buttons-container">
           <HomeContainer className="buttons">
-            <Button onClick={goToTimeout}>
+            <Button className={homeButtonStyle} onClick={goToTimeout}>
               <NavButton>LOGIN</NavButton>
             </Button>
           </HomeContainer>
           <HomeContainer className="buttons">
-            <Button onClick={goToTimeout}>
+            <Button className={homeButtonStyle} onClick={goToTimeout}>
               <NavButton>SING UP</NavButton>
             </Button>
           </HomeContainer>

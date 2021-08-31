@@ -11,6 +11,8 @@ import {
   LoginFormSection,
 } from "components/LoginForm/LoginForm.style";
 
+import PasswordField from "components/LoginForm/PasswordField/PasswordField";
+
 import { BlackOut } from "utils/BlackOut";
 
 export function LoginForm() {
@@ -85,6 +87,7 @@ export function LoginForm() {
               type="password"
               onChange={onChangengeHeandler}
             />
+            <PasswordField />
           </LoginFormLabel>
         </LoginFormSection>
         <LoginSubmitButton>Confirm</LoginSubmitButton>

@@ -10,12 +10,3 @@ export const NavBarLink = styled(NavLink)`
     color: red;
   }
 `;
-
-export const navStyle = {
-  root: {
-    flexGrow: 1,
-  },
-  appBar: {
-    backgroundColor: "rgb(0, 0, 0)",
-  },
-};

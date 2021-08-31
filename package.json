@@ -34,7 +34,6 @@
     "deploy": "gh-pages -d build",
     "serv": "json-server --watch 'server/db.json' --port 3001"
   },
-  "homepage": "https://dimamarjan.github.io/goit-react-hw-08-phonebook",
   "eslintConfig": {
     "extends": [
       "react-app",
