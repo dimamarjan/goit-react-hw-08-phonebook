@@ -2,15 +2,22 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import {
+  FormPhoneBookContainer,
   FormPhoneBook,
-  FormHeader,
-  LabelForm,
-  LabelText,
-  InputForm,
-  SubmitButton,
 } from "components/ContactForm/ContactForm.style";
 
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { costomTheme } from "utils/styleHooks/inputFormHook";
+import { useButtonStyle } from "utils/styleHooks/buttonsHook";
+import { Typography } from "@material-ui/core";
+import { useHeaderStyle } from "utils/styleHooks/hederHook";
+
+import { ContactList } from "components/ContactList/ContactList";
+
 import { BlackOut } from "utils/BlackOut";
+import { patterns } from "utils/patternsForm";
 
 import contactsOperations from "redux/slices/contacts/contacts-operations";
 
@@ -20,6 +27,8 @@ export function ContactForm() {
   const dispatch = useDispatch();
   const [isFadeOut, setIsFadeOut] = useState(true);
   const [isLoadedPage, setIsLoadedPage] = useState(true);
+  const { submitButton } = useButtonStyle();
+  const { headerStyle } = useHeaderStyle();
 
   const onChangeHendle = ({ target }) => {
     switch (target.name) {
@@ -61,34 +70,55 @@ export function ContactForm() {
           className={isFadeOut ? "black-enter" : "black-enter unactive"}
         />
       )}
-      <FormHeader>Phonebook</FormHeader>
-      <FormPhoneBook onSubmit={onSubmitHeandler}>
-        <LabelForm>
-          <LabelText>Name</LabelText>
-          <InputForm
-            onChange={onChangeHendle}
-            value={nameInpt}
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
-          ></InputForm>
-        </LabelForm>
-        <LabelForm>
-          <LabelText>Number</LabelText>
-          <InputForm
-            onChange={onChangeHendle}
-            value={numberInpt}
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-            required
-          ></InputForm>
-        </LabelForm>
-        <SubmitButton>Add contact</SubmitButton>
-      </FormPhoneBook>
+      <FormPhoneBookContainer className="phonebook-main-container">
+        <FormPhoneBookContainer className="phonebook-section">
+          <Typography className={headerStyle} component="p">
+            PHONEBOOK
+          </Typography>
+          <FormPhoneBook onSubmit={onSubmitHeandler}>
+            <FormPhoneBookContainer className="phonebook-input-container">
+              <ThemeProvider theme={costomTheme}>
+                <TextField
+                  inputProps={{
+                    pattern: patterns.namePattern,
+                    title: patterns.nameTitle,
+                  }}
+                  name="name"
+                  label="NAME"
+                  type="text"
+                  variant="outlined"
+                  value={nameInpt}
+                  onChange={onChangeHendle}
+                  fullWidth
+                />
+              </ThemeProvider>
+            </FormPhoneBookContainer>
+            <FormPhoneBookContainer className="phonebook-input-container">
+              <ThemeProvider theme={costomTheme}>
+                <TextField
+                  inputProps={{
+                    pattern: patterns.numberPattern,
+                    title: patterns.numberTitle,
+                  }}
+                  name="number"
+                  label="NUMBER"
+                  type="text"
+                  variant="outlined"
+                  value={numberInpt}
+                  onChange={onChangeHendle}
+                  fullWidth
+                />
+              </ThemeProvider>
+            </FormPhoneBookContainer>
+            <FormPhoneBookContainer className="phonebook-button-container">
+              <Button type="submit" className={submitButton} variant="outlined">
+                Confirm
+              </Button>
+            </FormPhoneBookContainer>
+          </FormPhoneBook>
+          <ContactList />
+        </FormPhoneBookContainer>
+      </FormPhoneBookContainer>
     </>
   );
 }

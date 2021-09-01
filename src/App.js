@@ -9,7 +9,6 @@ import PublicRoute from "components/Rutes/PublicRoute";
 
 import { Home } from "components/Home/Home";
 import { ContactForm } from "components/ContactForm/ContactForm";
-import { ContactList } from "components/ContactList/ContactList";
 import { NavBar } from "components/NavBar/NavBar";
 import { LoginForm } from "components/LoginForm/LoginForm";
 import { RegistrationForm } from "components/RegistrationForm/RegistrationForm";
@@ -29,7 +28,6 @@ function App() {
       <Switch>
         <PrivateRoute path="/contacts" redirectTo="/login">
           <ContactForm />
-          <ContactList />
         </PrivateRoute>
 
         <PublicRoute exact path="/" redirectTo="/contacts" restricted>

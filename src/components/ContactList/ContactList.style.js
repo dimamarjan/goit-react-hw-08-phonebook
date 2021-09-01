@@ -17,24 +17,24 @@ export const DelContactButton = styled.button`
   margin-left: 10px;
 `;
 
-export const ListHeader = styled.h2``;
-
-export const LabelContacts = styled.label`
-  display: flex;
-  flex-direction: column;
-  font-size: 20px;
-  margin-left: 15px;
-`;
-
 export const LabelContactsText = styled.span`
-  margin-bottom: 10px;
+  display: flex;
+  margin-top: 10px;
+  color: rgba(250, 250, 250, 0.5);
+  letter-spacing: 4px;
+  justify-content: center;
 `;
 
 export const AccentText = styled.span`
-  text-decoration: underline;
   font-weight: 600;
+  color: rgb(250, 250, 250);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding-right: 2px;
+  padding-left: 2px;
 `;
 
-export const InputContacts = styled.input`
-  width: 150px;
+export const FilterForm = styled.div`
+  &.filter-input-container {
+    margin-top: 30px;
+  }
 `;

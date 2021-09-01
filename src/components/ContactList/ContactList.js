@@ -8,12 +8,16 @@ import { ContactListSection } from "components/ContactList/ContactList.style";
 import { ContactListView } from "views/ContactsListView/ContactListView";
 
 import {
-  ListHeader,
-  LabelContacts,
   LabelContactsText,
-  InputContacts,
   AccentText,
+  FilterForm,
 } from "components/ContactList/ContactList.style";
+
+import { Typography } from "@material-ui/core";
+import { useHeaderStyle } from "utils/styleHooks/hederHook";
+import TextField from "@material-ui/core/TextField";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { costomTheme } from "utils/styleHooks/inputFormHook";
 
 export function ContactList() {
   const isLoadedContacts = useSelector(contactsSelectors.contactsLodedStatus);
@@ -23,6 +27,7 @@ export function ContactList() {
   const [showFilteredList, setShowFilteredList] = useState(false);
   const [filter, setFilter] = useState("");
   const [filteredArr, setFilteredArr] = useState([]);
+  const { headerStyle } = useHeaderStyle();
 
   const dispatch = useDispatch();
 
@@ -80,15 +85,28 @@ export function ContactList() {
   }, [filter, isLoadedContacts]);
 
   return (
-    <div>
-      <ListHeader>Contacts</ListHeader>
-      <LabelContacts>
-        <LabelContactsText>
-          Find contacts by <AccentText>name</AccentText> or
-          <AccentText>number</AccentText>
-        </LabelContactsText>
-        <InputContacts name="filter" onChange={onFilterChange} value={filter} />
-      </LabelContacts>
+    <>
+      <Typography className={headerStyle} component="p">
+        CONTACTS
+      </Typography>
+      <LabelContactsText>
+        FIND CONTACTS BY USING <br />
+        <AccentText>NAME</AccentText> OR <AccentText>NUMBER</AccentText>
+      </LabelContactsText>
+
+      <FilterForm className="filter-input-container">
+        <ThemeProvider theme={costomTheme}>
+          <TextField
+            name="name"
+            label="NUME OR NUMBER"
+            type="text"
+            variant="outlined"
+            value={filter}
+            onChange={onFilterChange}
+            fullWidth
+          />
+        </ThemeProvider>
+      </FilterForm>
 
       <ContactListSection>
         {isShowContacts &&
@@ -108,6 +126,6 @@ export function ContactList() {
             />
           ))}
       </ContactListSection>
-    </div>
+    </>
   );
 }

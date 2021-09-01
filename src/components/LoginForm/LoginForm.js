@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+
 import authOperations from "redux/slices/auth/auth-operations";
 
 import {
   LoginFormContainer,
-  LoginFormLabel,
-  LoginLableText,
-  LoginFormInput,
-  LoginSubmitButton,
   LoginFormSection,
 } from "components/LoginForm/LoginForm.style";
 
-import PasswordField from "components/LoginForm/PasswordField/PasswordField";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { costomTheme } from "utils/styleHooks/inputFormHook";
+import { useButtonStyle } from "utils/styleHooks/buttonsHook";
 
 import { BlackOut } from "utils/BlackOut";
 
@@ -21,6 +22,7 @@ export function LoginForm() {
   const [passwordInput, setPasswordInput] = useState("");
   const [isFadeOut, setIsFadeOut] = useState(true);
   const [isLoadedPage, setIsLoadedPage] = useState(true);
+  const { submitButton } = useButtonStyle();
 
   const onChangengeHeandler = ({ target }) => {
     switch (target.name) {
@@ -64,34 +66,41 @@ export function LoginForm() {
           className={isFadeOut ? "black-enter" : "black-enter unactive"}
         />
       )}
-      <LoginFormContainer onSubmit={onSubmitHeandler}>
-        <LoginFormSection>
-          <LoginFormLabel>
-            <LoginLableText>Login</LoginLableText>
-            <LoginFormInput
-              value={emailInput}
-              className="login-input"
-              name="login"
-              type="mail"
-              onChange={onChangengeHeandler}
-            />
-          </LoginFormLabel>
-        </LoginFormSection>
-        <LoginFormSection>
-          <LoginFormLabel>
-            <LoginLableText>Password</LoginLableText>
-            <LoginFormInput
-              value={passwordInput}
-              className="paswd-input"
-              name="paswd"
-              type="password"
-              onChange={onChangengeHeandler}
-            />
-            <PasswordField />
-          </LoginFormLabel>
-        </LoginFormSection>
-        <LoginSubmitButton>Confirm</LoginSubmitButton>
-      </LoginFormContainer>
+      <LoginFormSection className="login-main-container">
+        <LoginFormContainer onSubmit={onSubmitHeandler}>
+          <LoginFormSection className="login-input-container">
+            <ThemeProvider theme={costomTheme}>
+              <TextField
+                name="login"
+                label="EXAMPLE@MAIL.COM"
+                type="email"
+                variant="outlined"
+                value={emailInput}
+                onChange={onChangengeHeandler}
+                fullWidth
+              />
+            </ThemeProvider>
+          </LoginFormSection>
+          <LoginFormSection className="login-input-container">
+            <ThemeProvider theme={costomTheme}>
+              <TextField
+                name="paswd"
+                label="PASSWORD"
+                type="password"
+                variant="outlined"
+                value={passwordInput}
+                onChange={onChangengeHeandler}
+                fullWidth
+              />
+            </ThemeProvider>
+          </LoginFormSection>
+          <LoginFormSection className="login-button-container">
+            <Button type="submit" className={submitButton} variant="outlined">
+              Confirm
+            </Button>
+          </LoginFormSection>
+        </LoginFormContainer>
+      </LoginFormSection>
     </>
   );
 }

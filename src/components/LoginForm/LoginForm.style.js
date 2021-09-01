@@ -1,19 +1,26 @@
 import styled from "@emotion/styled";
 
+export const LoginFormSection = styled.div`
+  &.login-main-container {
+    display: flex;
+    height: calc(100vh - 70px);
+    background-color: #212121;
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+  &.login-input-container {
+    margin-top: 30px;
+  }
+  &.login-button-container {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: 0;
+    width: fit-content;
+  }
+`;
+
 export const LoginFormContainer = styled.form`
-  width: 100%;
-  height: calc(100vh - 64px);
-  background-color: #212121;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
 `;
-
-export const LoginFormLabel = styled.label``;
-
-export const LoginLableText = styled.p`
-  margin: 0;
-`;
-
-export const LoginFormInput = styled.input``;
-
-export const LoginSubmitButton = styled.button``;
-
-export const LoginFormSection = styled.div``;

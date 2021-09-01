@@ -15,4 +15,10 @@ export const useButtonStyle = makeStyles({
     padding: "40px 30px",
     border: "2px solid white",
   },
+  submitButton: {
+    color: "white",
+    height: 48,
+    padding: "10px 30px",
+    border: "2px solid white",
+  },
 });

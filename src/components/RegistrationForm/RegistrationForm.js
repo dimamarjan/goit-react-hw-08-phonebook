@@ -4,12 +4,14 @@ import authOperations from "redux/slices/auth/auth-operations";
 
 import {
   RegFormContainer,
-  ReginFormLabel,
-  ReginLableText,
-  ReginFormInput,
-  ReginSubmitButton,
   ReginFormSection,
 } from "components/RegistrationForm/RegistrationForm.style";
+
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { costomTheme } from "utils/styleHooks/inputFormHook";
+import { useButtonStyle } from "utils/styleHooks/buttonsHook";
 
 import { BlackOut } from "utils/BlackOut";
 
@@ -20,6 +22,7 @@ export function RegistrationForm() {
   const [passwordInput, setPasswordInput] = useState("");
   const [isFadeOut, setIsFadeOut] = useState(true);
   const [isLoadedPage, setIsLoadedPage] = useState(true);
+  const { submitButton } = useButtonStyle();
 
   const onChangengeHeandler = ({ target }) => {
     switch (target.name) {
@@ -67,47 +70,54 @@ export function RegistrationForm() {
           className={isFadeOut ? "black-enter" : "black-enter unactive"}
         />
       )}
-      <RegFormContainer onSubmit={onSubmitHeandler}>
-        <ReginFormSection>
-          <ReginFormLabel>
-            <ReginLableText>Name</ReginLableText>
-            <ReginFormInput
-              value={nameInput}
-              className="name-input"
-              name="name"
-              type="name"
-              onChange={onChangengeHeandler}
-            />
-          </ReginFormLabel>
-        </ReginFormSection>
-        <ReginFormSection>
-          <ReginFormLabel>
-            <ReginLableText>Login</ReginLableText>
-            <ReginFormInput
-              value={emailInput}
-              className="login-input"
-              name="login"
-              type="email"
-              onChange={onChangengeHeandler}
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-              required
-            />
-          </ReginFormLabel>
-        </ReginFormSection>
-        <ReginFormSection>
-          <ReginFormLabel>
-            <ReginLableText>Password</ReginLableText>
-            <ReginFormInput
-              value={passwordInput}
-              className="paswd-input"
-              name="paswd"
-              type="password"
-              onChange={onChangengeHeandler}
-            />
-          </ReginFormLabel>
-        </ReginFormSection>
-        <ReginSubmitButton>Confirm</ReginSubmitButton>
-      </RegFormContainer>
+      <ReginFormSection className="registration-main-container">
+        <RegFormContainer onSubmit={onSubmitHeandler}>
+          <ReginFormSection className="registration-input-container">
+            <ThemeProvider theme={costomTheme}>
+              <TextField
+                name="name"
+                label="NAME"
+                type="name"
+                variant="outlined"
+                value={nameInput}
+                onChange={onChangengeHeandler}
+                fullWidth
+              />
+            </ThemeProvider>
+          </ReginFormSection>
+          <ReginFormSection className="registration-input-container">
+            <ThemeProvider theme={costomTheme}>
+              <TextField
+                name="login"
+                label="EXAMPLE@MAIL.COM"
+                type="email"
+                variant="outlined"
+                value={emailInput}
+                onChange={onChangengeHeandler}
+                fullWidth
+              />
+            </ThemeProvider>
+          </ReginFormSection>
+          <ReginFormSection className="registration-input-container">
+            <ThemeProvider theme={costomTheme}>
+              <TextField
+                name="paswd"
+                label="PASSWORD"
+                type="password"
+                variant="outlined"
+                value={passwordInput}
+                onChange={onChangengeHeandler}
+                fullWidth
+              />
+            </ThemeProvider>
+          </ReginFormSection>
+          <ReginFormSection className="registration-button-container">
+            <Button type="submit" className={submitButton} variant="outlined">
+              Confirm
+            </Button>
+          </ReginFormSection>
+        </RegFormContainer>
+      </ReginFormSection>
     </>
   );
 }
