@@ -57,7 +57,7 @@ export function LoginForm() {
       setIsFadeOut(false);
       let loadPage = setTimeout(() => {
         setIsLoadedPage(false);
-      }, 1000);
+      }, 950);
       return () => {
         clearTimeout(loadPage);
       };

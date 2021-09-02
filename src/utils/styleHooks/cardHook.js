@@ -6,7 +6,8 @@ export const useCardStyles = makeStyles({
     justifyContent: "center",
     maxWidth: 275,
     backgroundColor: "rgb(33, 33, 33)",
-    padding: "10px",
+    padding: "20px",
+    paddingRight: "50px",
     boxShadow: "0 0 10px rgba(0,0,0,0.5)",
     "& :last-child": {
       paddingBottom: 0,
@@ -19,7 +20,7 @@ export const useCardStyles = makeStyles({
     fontSize: "14px",
     color: "rgb(255, 255, 255)",
     textAlign: "center",
-    width: "253px",
+    width: "200px",
     overflow: "hidden",
     "&:nth-child(2n)": {
       color: "rgb(255, 137, 137)",

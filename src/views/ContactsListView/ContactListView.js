@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { useButtonStyle } from "utils/styleHooks/buttonsHook";
 import { useCardStyles } from "utils/styleHooks/cardHook";
 
-export function ContactListView({ data, onDelete }) {
+export function ContactListView({ data, onDelete, isShowCardItem }) {
   const { id, name, number } = data;
   const { root, container, title } = useCardStyles();
   const { delButton } = useButtonStyle();
@@ -26,7 +26,7 @@ export function ContactListView({ data, onDelete }) {
           <Typography className={title} color="textSecondary">
             {number}
           </Typography>
-          <ContactTextContainer>
+          <ContactTextContainer className="rorate-button">
             <Button
               id={id}
               onClick={onDelete}
