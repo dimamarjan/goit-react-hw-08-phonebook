@@ -96,7 +96,7 @@ export function ContactList() {
         <ThemeProvider theme={costomTheme}>
           <TextField
             name="name"
-            label="NUME OR NUMBER"
+            label="NAME OR NUMBER"
             type="text"
             variant="outlined"
             value={filter}
