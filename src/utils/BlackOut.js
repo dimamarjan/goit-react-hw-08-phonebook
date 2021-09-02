@@ -23,7 +23,7 @@ export const BlackOut = styled.div`
     z-index: 999;
     width: 100%;
     height: 100vh;
-    background-color: #000000;
+    background-color: rgb(0, 0, 0);
 
     transition: opacity 1s;
   }

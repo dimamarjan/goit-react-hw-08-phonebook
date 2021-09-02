@@ -20,7 +20,7 @@ export const costomTheme = createTheme({
     },
     MuiInputBase: {
       input: {
-        color: "red",
+        color: "rgb(255, 0, 0)",
       },
     },
     MuiOutlinedInput: {

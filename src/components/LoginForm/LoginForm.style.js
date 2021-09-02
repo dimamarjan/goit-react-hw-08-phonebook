@@ -4,7 +4,7 @@ export const LoginFormSection = styled.div`
   &.login-main-container {
     display: flex;
     height: calc(100vh - 70px);
-    background-color: #212121;
+    background-color: rgb(33, 33, 33);
     padding-left: 150px;
     padding-right: 150px;
   }

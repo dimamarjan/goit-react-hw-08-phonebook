@@ -5,7 +5,7 @@ export const useCardStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     maxWidth: 275,
-    backgroundColor: "#212121",
+    backgroundColor: "rgb(33, 33, 33)",
     padding: "10px",
     boxShadow: "0 0 10px rgba(0,0,0,0.5)",
     "& :last-child": {
@@ -17,12 +17,12 @@ export const useCardStyles = makeStyles({
   },
   title: {
     fontSize: "14px",
-    color: "#ffffff",
+    color: "rgb(255, 255, 255)",
     textAlign: "center",
     width: "253px",
     overflow: "hidden",
     "&:nth-child(2n)": {
-      color: "#ff8989",
+      color: "rgb(255, 137, 137)",
     },
     "&:not(:last-child)": {
       marginBottom: "5px",

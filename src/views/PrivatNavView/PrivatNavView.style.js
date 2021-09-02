@@ -13,7 +13,7 @@ export const NavBarContainer = styled.nav`
 export const NavBarLink = styled(NavLink)`
   text-decoration: none;
   &.active {
-    color: red;
+    color: rgb(255, 0, 0);
   }
 `;
 

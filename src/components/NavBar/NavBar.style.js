@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 
 export const NavBarLink = styled(NavLink)`
   &.nav-links {
-    color: white;
+    color: rgb(255, 255, 255);
     text-decoration: none;
   }
   &.active {
-    color: red;
+    color: rgb(255, 0, 0);
   }
 `;

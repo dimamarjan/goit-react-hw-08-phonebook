@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useHeaderStyle = makeStyles({
   headerStyle: {
-    color: "white",
+    color: "rgb(255, 255, 255)",
     padding: "10px 30px",
     fontSize: "40px",
     fontWeight: "500",

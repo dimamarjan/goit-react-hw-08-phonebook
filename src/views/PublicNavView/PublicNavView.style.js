@@ -25,12 +25,12 @@ export const NavItemContainer = styled.div`
 
 export const NavBarLink = styled(NavLink)`
   text-decoration: none;
-  color: #ffffff;
+  color: rgb(255, 255, 255);
   left: 0;
   &:not(:last-child) {
     margin-right: 50px;
   }
   &.active {
-    color: red;
+    color: rgb(255, 0, 0);
   }
 `;

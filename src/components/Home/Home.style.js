@@ -32,7 +32,7 @@ export const HomeContainer = styled.div`
 
 export const NavButton = styled.span`
   text-decoration: none;
-  color: #ffffff;
+  color: rgb(255, 255, 255);
   font-size: 50px;
   font-weight: 800;
 `;
