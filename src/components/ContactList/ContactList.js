@@ -1,28 +1,26 @@
-import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
+import { useSelector, useDispatch } from "react-redux";
 import contactsSelectors from "redux/slices/contacts/contacts-selectors";
 import contactsOperations from "redux/slices/contacts/contacts-operations";
-
-import { ContactListSection } from "components/ContactList/ContactList.style";
-import { ContactListView } from "views/ContactsListView/ContactListView";
 
 import {
   LabelContactsText,
   AccentText,
   FilterForm,
+  ContactListSection,
 } from "components/ContactList/ContactList.style";
+import { ContactListView } from "views/ContactsListView/ContactListView";
 
-import { Typography } from "@material-ui/core";
-import { useHeaderStyle } from "utils/styleHooks/hederHook";
 import TextField from "@material-ui/core/TextField";
+import { Typography } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { costomTheme } from "utils/styleHooks/inputFormHook";
+import { costomTheme } from "utils/themes/inputFormTheme";
+import { useHeaderStyle } from "utils/styleHooks/hederHook";
 
 export function ContactList() {
   const isLoadedContacts = useSelector(contactsSelectors.contactsLodedStatus);
   const contactsList = useSelector(contactsSelectors.contactsData);
-
   const [isShowContacts, setIsShowContacts] = useState(false);
   const [showFilteredList, setShowFilteredList] = useState(false);
   const [filter, setFilter] = useState("");
@@ -36,7 +34,7 @@ export function ContactList() {
   };
 
   const onDeleteHeandler = ({ target }) => {
-    dispatch(contactsOperations.delContact(target.id));
+    dispatch(contactsOperations.delContact(target.parentElement.id));
   };
 
   useEffect(() => {

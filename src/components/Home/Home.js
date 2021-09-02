@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import { HomeContainer } from "components/Home/Home.style";
-import Button from "@material-ui/core/Button";
-import { useButtonStyle } from "utils/styleHooks/buttonsHook";
+import { HomeContainer, NavButton } from "components/Home/Home.style";
 
-import { NavButton } from "components/Home/Home.style";
+import Button from "@material-ui/core/Button";
+
+import { useButtonStyle } from "utils/styleHooks/buttonsHook";
 import { BlackOut } from "utils/BlackOut";
 
 export function Home() {
@@ -34,11 +34,13 @@ export function Home() {
   useEffect(() => {
     if (isLoadedPage) {
       setIsFadeOut(false);
-      setTimeout(() => {
+      let loadPage = setTimeout(() => {
         setIsLoadedPage(false);
-      }, 950);
+      }, 1000);
+      return () => {
+        clearTimeout(loadPage);
+      };
     }
-    return () => {};
   }, [isLoadedPage]);
 
   return (

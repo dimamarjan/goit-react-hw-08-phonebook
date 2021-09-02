@@ -1,29 +1,26 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Button from "@material-ui/core/Button";
-import { useButtonStyle } from "utils/styleHooks/buttonsHook";
-
 import authOperations from "redux/slices/auth/auth-operations";
 import authSelectors from "redux/slices/auth/auth-selectors";
-
 import contactsOperations from "redux/slices/contacts/contacts-operations";
 import { clearContacts } from "redux/slices/contacts/contacts-slice";
 
 import {
   NavBarContainer,
-  ItemContainer,
+  NavItemContainer,
   NavBarLink,
   UserName,
 } from "views/PrivatNavView/PrivatNavView.style";
+
+import Button from "@material-ui/core/Button";
+import { useButtonStyle } from "utils/styleHooks/buttonsHook";
 
 export function PrivatNavView() {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUsername);
   const userStatus = useSelector(authSelectors.isCurrentUser);
   const { buttonStyle } = useButtonStyle();
-
-  console.log(clearContacts);
 
   const onLogOutHeandler = () => {
     dispatch(authOperations.logOut());
@@ -45,12 +42,12 @@ export function PrivatNavView() {
 
   return (
     <NavBarContainer>
-      <ItemContainer className="contact-nav-link">
+      <NavItemContainer className="contact-nav-link">
         <NavBarLink to="/contacts" onClick={getContacts}>
           CONTACTS
         </NavBarLink>
-      </ItemContainer>
-      <ItemContainer className="user-nav-link">
+      </NavItemContainer>
+      <NavItemContainer className="user-nav-link">
         <UserName>{name ? name.toUpperCase() : ""}</UserName>
         <Button
           className={buttonStyle}
@@ -59,7 +56,7 @@ export function PrivatNavView() {
         >
           LOGOUT
         </Button>
-      </ItemContainer>
+      </NavItemContainer>
     </NavBarContainer>
   );
 }

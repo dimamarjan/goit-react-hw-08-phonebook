@@ -17,7 +17,7 @@ export const NavBarLink = styled(NavLink)`
   }
 `;
 
-export const ItemContainer = styled.div`
+export const NavItemContainer = styled.div`
   display: flex;
   align-items: center;
   &.contact-nav-link {

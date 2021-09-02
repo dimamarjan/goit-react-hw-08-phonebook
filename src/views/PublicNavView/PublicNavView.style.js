@@ -10,7 +10,7 @@ export const NavBarContainer = styled.nav`
   height: 70px;
 `;
 
-export const ItemContainer = styled.div`
+export const NavItemContainer = styled.div`
   display: flex;
   align-items: center;
   &.home-nav-link {

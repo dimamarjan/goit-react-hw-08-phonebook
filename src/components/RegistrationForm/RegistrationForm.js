@@ -1,28 +1,32 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import authOperations from "redux/slices/auth/auth-operations";
+import authSelectors from "redux/slices/auth/auth-selectors";
 
 import {
   RegFormContainer,
   ReginFormSection,
 } from "components/RegistrationForm/RegistrationForm.style";
+import { AllertMessage } from "views/AlertMessage/AllertMessage";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { costomTheme } from "utils/styleHooks/inputFormHook";
-import { useButtonStyle } from "utils/styleHooks/buttonsHook";
 
+import { costomTheme } from "utils/themes/inputFormTheme";
+import { useButtonStyle } from "utils/styleHooks/buttonsHook";
 import { BlackOut } from "utils/BlackOut";
 
 export function RegistrationForm() {
-  const dispatch = useDispatch();
   const [nameInput, setNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [isFadeOut, setIsFadeOut] = useState(true);
   const [isLoadedPage, setIsLoadedPage] = useState(true);
   const { submitButton } = useButtonStyle();
+  const isLogged = useSelector(authSelectors.loggedStatus);
+  const dispatch = useDispatch();
 
   const onChangengeHeandler = ({ target }) => {
     switch (target.name) {
@@ -113,9 +117,12 @@ export function RegistrationForm() {
           </ReginFormSection>
           <ReginFormSection className="registration-button-container">
             <Button type="submit" className={submitButton} variant="outlined">
-              Confirm
+              REGISTRATION
             </Button>
           </ReginFormSection>
+          {isLogged === "rejected" && (
+            <AllertMessage message={"REGISTRATION"} />
+          )}
         </RegFormContainer>
       </ReginFormSection>
     </>

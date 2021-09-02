@@ -6,6 +6,7 @@ import { store, persistor } from "redux/store/store";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
+import "@fontsource/roboto";
 
 ReactDOM.render(
   <React.StrictMode>

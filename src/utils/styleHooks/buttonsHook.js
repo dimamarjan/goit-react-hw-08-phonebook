@@ -21,4 +21,8 @@ export const useButtonStyle = makeStyles({
     padding: "10px 30px",
     border: "2px solid white",
   },
+  delButton: {
+    color: "rgba(255, 255, 255, 0.53)",
+    borderColor: "rgba(255, 255, 255, 0.53)",
+  },
 });

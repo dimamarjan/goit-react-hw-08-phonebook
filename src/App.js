@@ -8,12 +8,10 @@ import PrivateRoute from "components/Rutes/PrivatRoute";
 import PublicRoute from "components/Rutes/PublicRoute";
 
 import { Home } from "components/Home/Home";
-import { ContactForm } from "components/ContactForm/ContactForm";
+import { Contacts } from "components/Contacts/Contacts";
 import { NavBar } from "components/NavBar/NavBar";
 import { LoginForm } from "components/LoginForm/LoginForm";
 import { RegistrationForm } from "components/RegistrationForm/RegistrationForm";
-
-import "@fontsource/roboto";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +25,7 @@ function App() {
       <NavBar />
       <Switch>
         <PrivateRoute path="/contacts" redirectTo="/login">
-          <ContactForm />
+          <Contacts />
         </PrivateRoute>
 
         <PublicRoute exact path="/" redirectTo="/contacts" restricted>
