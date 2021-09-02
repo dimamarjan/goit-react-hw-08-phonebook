@@ -12,7 +12,7 @@ export function Home() {
   const [isFadeIn, setIsFadeIn] = useState(false);
   const [isFadeOut, setIsFadeOut] = useState(true);
   const [isLoadedPage, setIsLoadedPage] = useState(true);
-  const { homeButtonStyle } = useButtonStyle();
+  const { buttonStyle } = useButtonStyle();
   let history = useHistory();
 
   const goToTimeout = ({ target }) => {
@@ -57,12 +57,12 @@ export function Home() {
       >
         <HomeContainer className="buttons-container">
           <HomeContainer className="buttons">
-            <Button className={homeButtonStyle} onClick={goToTimeout}>
+            <Button className={buttonStyle} onClick={goToTimeout}>
               <NavButton>LOGIN</NavButton>
             </Button>
           </HomeContainer>
           <HomeContainer className="buttons">
-            <Button className={homeButtonStyle} onClick={goToTimeout}>
+            <Button className={buttonStyle} onClick={goToTimeout}>
               <NavButton>SING UP</NavButton>
             </Button>
           </HomeContainer>
