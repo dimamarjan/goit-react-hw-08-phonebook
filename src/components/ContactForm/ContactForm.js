@@ -90,7 +90,7 @@ export function ContactForm() {
         </FormPhoneBookContainer>
         <FormPhoneBookContainer className="phonebook-button-container">
           <Button type="submit" className={submitButton} variant="outlined">
-            Confirm
+            ADD TO CONTACTS
           </Button>
         </FormPhoneBookContainer>
       </FormPhoneBook>
