@@ -32,9 +32,8 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "netlify deploy -p"
   },
-  "homepage": "https://dimamarjan.github.io/goit-react-hw-08-phonebook",
   "eslintConfig": {
     "extends": [
       "react-app",
